@@ -19,8 +19,11 @@ copy-proto-module:
 gen-proto-module:
 	./scripts/gen_proto.sh ${CURRENT_DIR}
 
+migration:
+	@migrate create -ext sql -dir ./migrations/postgres -seq $(name)
+
 migration-up:
-	migrate -path ./migrations/postgres -database 'postgres://maxmurjon:max22012004@localhost:5432/article?sslmode=disable' up
+	migrate -path ./migrations/postgres -database 'postgres://maxmurjon:max22012004@localhost:5432/blog_post?sslmode=disable' up
 
 migration-down:
 	migrate -path ./migrations/postgres -database 'postgres://maxmurjon:max22012004@localhost:5432/article?sslmode=disable' down
